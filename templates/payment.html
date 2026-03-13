@@ -1,0 +1,41 @@
+<!-- templates/payment.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Payment Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='payment.css') }}">
+</head>
+
+<body>
+    <div class="card">
+        <h1>Payment Summary</h1>
+
+        <h2>Flight Details</h2>
+        <p><b>Route:</b> {{ booking.flight.from_city }} → {{ booking.flight.to_city }}</p>
+        <p><b>Travel Date:</b> {{ booking.travel_date }}</p>
+        <p><b>Price Per Ticket:</b> ₹{{ booking.flight.price }}</p>
+
+        <h2>Passenger Details</h2>
+        <ul>
+            {% for name in booking.passenger_names.split(',') %}
+                <li>{{ name }}</li>
+            {% endfor %}
+        </ul>
+
+        <p><b>Total Passengers:</b> {{ passengers }}</p>
+
+        <h2>Amount Calculation</h2>
+        <p>₹{{ booking.flight.price }} × {{ passengers }} = <b>₹{{ total_price }}</b></p>
+
+        <h2>Total Amount to Pay</h2>
+        <h1>₹{{ total_price }}</h1>
+
+        <div class="button-group">
+            <a href="{{ url_for('bookings') }}" class="btn">Confirm Payment</a>
+            <a href="{{ url_for('home') }}" class="btn">Cancel</a>
+        </div>
+    </div>
+</body>
+
+</html>

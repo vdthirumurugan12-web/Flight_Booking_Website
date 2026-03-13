@@ -1,0 +1,111 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flight Booking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <script>
+        function filterFlights() {
+            let fromCity = document.getElementById("fromCity").value.toLowerCase();
+            let toCity = document.getElementById("toCity").value.toLowerCase();
+
+            let section = document.getElementById("flightsSection");
+
+            if (fromCity === "" || toCity === "") {
+                section.style.display = "none";
+                return;
+            }
+
+            section.style.display = "block";
+
+            let table = document.getElementById("flightTable");
+            let rows = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < rows.length; i++) {
+                let cols = rows[i].getElementsByTagName("td");
+                let fromText = cols[1].textContent.toLowerCase();
+                let toText = cols[2].textContent.toLowerCase();
+
+                rows[i].style.display = (fromText === fromCity && toText === toCity) ? "" : "none";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Flight Booking System</h1>
+        <div class="btn-container">
+            {% if username %}
+                <a href="{{ url_for('logout') }}"><button class="logout-btn">Logout</button></a>
+            {% else %}
+                <a href="{{ url_for('login') }}"><button class="login-btn">Login</button></a>
+                <a href="{{ url_for('signup') }}"><button class="signup-btn">Sign Up</button></a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        {% if username %}
+            <div class="welcome-message">Welcome, {{ username }}!</div>
+        {% endif %}
+
+        <!-- Flight Search -->
+        <label>From City</label><br>
+        <select id="fromCity" onchange="filterFlights()">
+            <option value="">Select From City</option>
+            {% for city in cities %}
+                <option>{{ city }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label>To City</label><br>
+        <select id="toCity" onchange="filterFlights()">
+            <option value="">Select To City</option>
+            {% for city in cities %}
+                <option>{{ city }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <!-- Available Flights Table -->
+        <div id="flightsSection" style="display:none;">
+            <h2>Available Flights</h2>
+            <table id="flightTable">
+                <tr>
+                    <th>Flight ID</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Price</th>
+                    <th>Seats Available</th>
+                    <th>Action</th>
+                </tr>
+                {% for flight in flights %}
+                    <tr>
+                        <td>{{ flight.id }}</td>
+                        <td>{{ flight.from_city }}</td>
+                        <td>{{ flight.to_city }}</td>
+                        <td>₹{{ flight.price }}</td>
+                        <td>{{ flight.seats_available }}</td>
+                        <td>
+                            <a href="{{ url_for('book_flight', flight_id=flight.id) }}">
+                                <button class="book-btn">Book Flight</button>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <br>
+        <a href="{{ url_for('bookings') }}"><button class="view-btn">View My Bookings</button></a>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+/* GOOGLE FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Orbitron:wght@500;600&display=swap');
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+    font-family: 'Montserrat', sans-serif;
+    color:#e6edf3;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+
+    /* AIRPLANE BACKGROUND */
+     background: url('images/book.jpg') no-repeat center center fixed;
+    background-size: cover; 
+    position:relative;
+}
+
+/* DARK OVERLAY FOR PROFESSIONAL LOOK */
+body::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:linear-gradient(
+        180deg,
+        rgba(5,10,20,0.85),
+        rgba(0,0,0,0.95)
+    );
+    z-index:0;
+}
+
+/* HEADER */
+.header{
+    position:absolute;
+    top:25px;
+    left:30px;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* USER TEXT */
+.header span{
+    font-weight:500;
+    font-size:1.1rem;
+    color:#c9d1d9;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn{
+    padding:8px 18px;
+    border-radius:30px;
+    border:none;
+    cursor:pointer;
+    font-weight:600;
+
+    background:linear-gradient(45deg,#4fa3ff,#00d2ff);
+    color:#051018;
+
+    box-shadow:0 0 10px rgba(0,150,255,0.5);
+
+    transition:all .3s;
+}
+
+.logout-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 20px rgba(0,180,255,0.9);
+}
+
+/* MAIN CARD */
+.booking-card{
+    position:relative;
+    z-index:2;
+
+    width:430px;
+    padding:45px;
+
+    border-radius:18px;
+
+    /* GLASSMORPHISM */
+    background:rgba(18,25,35,0.65);
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+    0 10px 40px rgba(0,0,0,0.8),
+    inset 0 0 20px rgba(255,255,255,0.05);
+
+    transition:all .35s;
+}
+
+/* 3D HOVER */
+.booking-card:hover{
+    transform:translateY(-8px) scale(1.02);
+}
+
+/* TITLE */
+h1{
+    font-family:'Orbitron',sans-serif;
+    font-size:34px;
+    letter-spacing:2px;
+
+    margin-bottom:15px;
+
+    color:#e6edf3;
+
+    text-shadow:
+    0 0 12px rgba(0,150,255,0.7);
+}
+
+/* SUBTITLE */
+h3{
+    font-weight:400;
+    margin-bottom:15px;
+    color:#b5c1ce;
+}
+
+/* TEXT */
+p{
+    font-size:15px;
+    margin:5px 0;
+    color:#9aa7b3;
+}
+
+/* LABEL */
+label{
+    font-size:14px;
+    font-weight:500;
+    color:#cbd5df;
+}
+
+/* INPUTS */
+input,select{
+
+    width:100%;
+    padding:11px;
+    margin-top:6px;
+    margin-bottom:12px;
+
+    border-radius:8px;
+    border:1px solid rgba(255,255,255,0.2);
+
+    font-size:14px;
+
+    background:rgba(10,15,22,0.85);
+    color:#e6edf3;
+
+    outline:none;
+
+    transition:.3s;
+}
+
+/* INPUT FOCUS */
+input:focus,select:focus{
+
+    border-color:#00c3ff;
+
+    box-shadow:
+    0 0 8px rgba(0,170,255,0.7);
+}
+
+/* PASSENGER INPUT */
+#passenger_names input{
+    margin-bottom:10px;
+}
+
+/* PRICE */
+.price{
+
+    font-size:18px;
+    font-weight:600;
+
+    margin-top:10px;
+
+    color:#00c3ff;
+
+    text-shadow:0 0 10px rgba(0,170,255,0.6);
+}
+
+/* BOOK BUTTON */
+button{
+
+    margin-top:20px;
+
+    padding:12px 32px;
+
+    border-radius:30px;
+
+    border:none;
+
+    font-size:15px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    background:linear-gradient(45deg,#0077ff,#00d4ff);
+
+    color:#031018;
+
+    box-shadow:
+    0 0 12px rgba(0,160,255,0.7);
+
+    transition:.3s;
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 0 25px rgba(0,200,255,1);
+}
+
+/* BACK BUTTON */
+.back-btn{
+
+    display:inline-block;
+
+    margin-top:18px;
+
+    padding:8px 18px;
+
+    text-decoration:none;
+
+    border-radius:20px;
+
+    border:1px solid rgba(255,255,255,0.3);
+
+    color:#cbd5df;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+
+    background:#00bfff;
+    color:#021018;
+}
+
+/* MOBILE */
+@media(max-width:500px){
+
+    .booking-card{
+        width:90%;
+        padding:30px;
+    }
+
+    h1{
+        font-size:26px;
+    }
+}

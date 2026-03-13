@@ -1,0 +1,50 @@
+<!-- templates/bookings.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bookings.css') }}">
+</head>
+
+<body>
+
+<h1>My Bookings</h1>
+
+<table>
+    <tr>
+        <th>Booking ID</th>
+        <th>Passengers</th>
+        <th>Total Passengers</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Price / Ticket</th>
+        <th>Total Price</th>
+        <th>Travel Date</th>
+        <th>Booked Time</th>
+    </tr>
+
+    {% for booking in bookings %}
+    <tr>
+        <td>{{ booking.id }}</td>
+        <td>
+            {% for name in booking.passenger_names.split(',') %}
+                {{ name }}<br>
+            {% endfor %}
+        </td>
+        <td>{{ booking.passenger_names.split(',')|length }}</td>
+        <td>{{ booking.flight.from_city }}</td>
+        <td>{{ booking.flight.to_city }}</td>
+        <td>₹{{ booking.flight.price }}</td>
+        <td>₹{{ booking.flight.price * (booking.passenger_names.split(',')|length) }}</td>
+        <td>{{ booking.travel_date }}</td>
+        <td>{{ booking.date_booked }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<a href="{{ url_for('home') }}" class="back-btn">Back to Flights</a>
+
+</body>
+
+</html>

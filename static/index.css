@@ -1,0 +1,353 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Orbitron:wght@500&display=swap');
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* BODY */
+body{
+
+    font-family:'Montserrat',sans-serif;
+    color:#e6edf3;
+
+    min-height:100vh;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    /* AIRPLANE BACKGROUND */
+    background:url("images/index.jpg") no-repeat center center fixed;
+    background-size:cover;
+
+    position:relative;
+}
+
+/* LIGHT OVERLAY (background still visible) */
+body::before{
+
+    content:"";
+
+    position:absolute;
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    background:linear-gradient(
+        rgba(5,10,20,0.45),
+        rgba(0,0,0,0.65)
+    );
+
+    z-index:0;
+}
+
+/* HEADER */
+.header{
+
+    position:relative;
+    z-index:2;
+
+    width:100%;
+
+    padding:20px 40px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* TITLE */
+.header h1{
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:32px;
+
+    letter-spacing:2px;
+
+    color:#e6edf3;
+
+    text-shadow:0 0 12px rgba(0,150,255,0.8);
+}
+
+/* HEADER BUTTON CONTAINER */
+.btn-container{
+
+    display:flex;
+    gap:12px;
+}
+
+/* HEADER BUTTONS */
+.logout-btn,
+.login-btn,
+.signup-btn{
+
+    padding:8px 18px;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    background:linear-gradient(45deg,#0077ff,#00d4ff);
+
+    color:#021018;
+
+    box-shadow:0 0 10px rgba(0,150,255,0.6);
+
+    transition:.3s;
+}
+
+.logout-btn:hover,
+.login-btn:hover,
+.signup-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 0 20px rgba(0,200,255,1);
+}
+
+/* MAIN CONTAINER (GLASS CARD) */
+.main-container{
+
+    position:relative;
+    z-index:2;
+
+    width:85%;
+    max-width:1200px;
+
+    margin-top:40px;
+
+    padding:40px;
+
+    border-radius:18px;
+
+    background:rgba(20,30,40,0.45);
+
+    backdrop-filter:blur(12px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:0 15px 45px rgba(0,0,0,0.7);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    transition:.3s;
+}
+
+.main-container:hover{
+
+    transform:translateY(-5px);
+}
+
+/* WELCOME MESSAGE */
+.welcome-message{
+
+    font-size:18px;
+
+    margin-bottom:20px;
+
+    color:#c9d1d9;
+}
+
+/* LABELS */
+label{
+
+    font-size:14px;
+
+    font-weight:500;
+
+    color:#c9d1d9;
+}
+
+/* INPUTS */
+input,
+select{
+
+    padding:10px;
+
+    border-radius:8px;
+
+    border:1px solid rgba(255,255,255,0.2);
+
+    font-size:14px;
+
+    margin-top:6px;
+
+    outline:none;
+
+    background:rgba(10,15,25,0.8);
+
+    color:#e6edf3;
+
+    width:90%;
+    max-width:400px;
+
+    transition:.3s;
+}
+
+input:focus,
+select:focus{
+
+    border-color:#00c3ff;
+
+    box-shadow:0 0 8px rgba(0,170,255,0.8);
+}
+
+/* FLIGHTS SECTION */
+#flightsSection{
+
+    width:100%;
+
+    margin-top:30px;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    background:rgba(15,25,35,0.55);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:0 10px 35px rgba(0,0,0,0.7);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* SECTION TITLE */
+#flightsSection h2{
+
+    font-size:22px;
+
+    margin-bottom:20px;
+
+    color:#e6edf3;
+
+    text-shadow:0 0 10px rgba(0,170,255,0.7);
+}
+
+/* TABLE */
+#flightTable{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+/* TABLE HEADERS */
+#flightTable th{
+
+    background:rgba(0,120,255,0.2);
+
+    color:#8fd3ff;
+
+    font-weight:500;
+
+    text-transform:uppercase;
+
+    font-size:14px;
+
+    padding:12px;
+}
+
+/* TABLE CELLS */
+#flightTable td{
+
+    padding:10px;
+
+    text-align:center;
+
+    border-bottom:1px solid rgba(255,255,255,0.15);
+
+    font-size:14px;
+}
+
+/* BOOK BUTTON */
+button.book-btn{
+
+    padding:8px 18px;
+
+    border:none;
+
+    border-radius:25px;
+
+    background:linear-gradient(45deg,#0077ff,#00d4ff);
+
+    color:#021018;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:0 0 10px rgba(0,150,255,0.7);
+
+    transition:.3s;
+}
+
+button.book-btn:hover{
+
+    transform:scale(1.05);
+
+    box-shadow:0 0 20px rgba(0,200,255,1);
+}
+
+/* VIEW BOOKING BUTTON */
+button.view-btn{
+
+    margin-top:20px;
+
+    padding:10px 25px;
+
+    border:none;
+
+    border-radius:30px;
+
+    font-weight:600;
+
+    background:linear-gradient(45deg,#0077ff,#00d4ff);
+
+    color:#021018;
+
+    cursor:pointer;
+
+    box-shadow:0 0 10px rgba(0,150,255,0.7);
+
+    transition:.3s;
+}
+
+button.view-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 0 20px rgba(0,200,255,1);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .main-container{
+        width:95%;
+        padding:25px;
+    }
+
+    #flightTable th,
+    #flightTable td{
+        font-size:12px;
+    }
+
+}

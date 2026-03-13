@@ -1,0 +1,81 @@
+<!-- templates/book.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Flight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='book.css') }}">
+    <script>
+        function generatePassengers() {
+            const count = Number(document.getElementById("passengers").value);
+            const container = document.getElementById("passenger_names");
+            const price = Number("{{ flight.price }}");
+
+            // Preserve existing input values
+            const existingValues = [];
+            const inputs = container.querySelectorAll("input[name='passenger_name']");
+            inputs.forEach(input => existingValues.push(input.value));
+
+            container.innerHTML = "";
+
+            for (let i = 0; i < count; i++) {
+                const div = document.createElement("div");
+                const val = existingValues[i] || "";
+                div.innerHTML = `
+                    <label>Passenger ${i + 1} Name</label><br>
+                    <input type="text" name="passenger_name" placeholder="Passenger ${i + 1}" value="${val}" required><br><br>
+                `;
+                container.appendChild(div);
+            }
+
+            if (count > 0) {
+                const total = count * price;
+                document.getElementById("pricePreview").innerHTML =
+                    "<b>Total Price: ₹" + total + "</b>";
+            } else {
+                document.getElementById("pricePreview").innerHTML = "";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="overlay">
+        <div class="booking-card">
+            <h1>✈ Book Your Flight</h1>
+
+            <h3>Flight Details</h3>
+            <p><b>From :</b> {{ flight.from_city }}</p>
+            <p><b>To :</b> {{ flight.to_city }}</p>
+            <p><b>Price Per Ticket :</b> ₹{{ flight.price }}</p>
+            <p><b>Seats Available :</b> {{ flight.seats_available }}</p>
+
+            <form method="POST">
+                <label>Select Travel Date</label>
+                <br>
+                <input type="date" name="travel_date" min="{{ today }}" required>
+                <br><br>
+
+                <label>Number of Passengers</label>
+                <br>
+                <select id="passengers" onchange="generatePassengers()" required>
+                    <option value="">Select</option>
+                    {% for i in range(1, flight.seats_available + 1) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+
+                <br><br>
+                <div id="pricePreview" class="price"></div>
+                <div id="passenger_names"></div>
+
+                <button type="submit">Confirm Booking</button>
+            </form>
+
+            <br>
+            <a href="{{ url_for('home') }}" class="back-btn">Back to Flights</a>
+        </div>
+    </div>
+</body>
+
+</html>
